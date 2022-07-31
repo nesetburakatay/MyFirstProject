@@ -1,0 +1,82 @@
+﻿@using WebApplicationBlog.Models
+@model List<CarCategory>
+@ViewBag.getid
+@{
+    ViewBag.Title = "UnderList";
+}
+
+<h2>UnderList</h2>
+
+<div>
+    <hr />
+    @foreach (var item in Model)
+    {
+
+        if (item.CategoryName == ViewBag.getIdasCategoryName)
+        {
+            <div class="alert alert-info" role="alert"><h3>@item.CategoryName <small>kategorisi altında toplam @item.CarLists.Count() adet araba vardır.</small></h3> </div>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">
+                            CarBrand
+                        </th>
+                        <th scope="col">
+                            CarUnicId
+                        </th>
+                        <th scope="col">
+                            ModelYear
+                        </th>
+                        <th scope="col">
+                            CarColor
+                        </th>
+                        <th scope="col">
+                            .CarPicture
+                        </th>
+                        <th scope="col">
+                            CarState
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var a in item.CarLists)
+                    {
+                        <tr>
+                            <th scope="row">
+                                @a.Id
+                            </th>
+                            <td>
+                                @a.CarBrand
+                            </td>
+                            <td>
+                                @a.CarUnicId
+                            </td>
+                            <td>
+                                @a.ModelYear
+                            </td>
+                            <td>
+                                @a.CarColor
+                            </td>
+                            <td>
+                                @a.CarPicture
+                            </td>
+                            <td>
+                                @a.CarState
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        }
+
+    }
+
+
+</div>
+<p>
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |*@
+    @Html.ActionLink("Back to List", "Index")
+</p>
